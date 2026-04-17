@@ -16,12 +16,12 @@ nav {
   border-bottom: 1px solid oklch(80% 3% 200);
 }
 
-nav ul,
+/* nav ul,
 nav li {
   display: contents;
-}
+} */
 
-nav ul {
+nav {
   display: flex;
   list-style: none;
   padding: 0;
