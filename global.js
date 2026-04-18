@@ -56,24 +56,41 @@ document.body.insertAdjacentHTML(
 
 const select = document.querySelector('.color-scheme select');
 
-// Load saved preference
 if ("colorScheme" in localStorage) {
   document.documentElement.style.colorScheme = localStorage.colorScheme;
   select.value = localStorage.colorScheme;
 }
 
-// Listen for changes
 select.addEventListener('input', (event) => {
   const value = event.target.value;
 
-  // Apply theme
   document.documentElement.style.colorScheme = value;
 
-  // Save preference
   localStorage.colorScheme = value;
 
   console.log('color scheme changed to', value);
 });
+
+// Better contact form
+
+let form = document.querySelector("form");
+
+form?.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let data = new FormData(form);
+
+    // Build mailto URL
+    let url = form.action + "?";
+
+    let subject = encodeURIComponent(data.get("subject"));
+    let message = encodeURIComponent(data.get("message"));
+
+    url += `subject=${subject}&body=${message}`;
+
+    location.href = url;
+});
+
 
 
 
