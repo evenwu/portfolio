@@ -15,7 +15,6 @@ let pages = [
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
-
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "/"
   : "/portfolio/";
@@ -71,8 +70,6 @@ select.addEventListener('input', (event) => {
   console.log('color scheme changed to', value);
 });
 
-// Better contact form
-
 let form = document.querySelector("form");
 
 form?.addEventListener("submit", function (event) {
@@ -80,7 +77,6 @@ form?.addEventListener("submit", function (event) {
 
     let data = new FormData(form);
 
-    // Build mailto URL
     let url = form.action + "?";
 
     let subject = encodeURIComponent(data.get("subject"));
@@ -90,6 +86,47 @@ form?.addEventListener("submit", function (event) {
 
     location.href = url;
 });
+
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
+
+    // Check for HTTP errors
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    // Parse JSON
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  if (!containerElement) {
+    console.error('renderProjects: containerElement is null or undefined.');
+    return;
+  }
+
+  containerElement.innerHTML = '';
+
+  projects.forEach(project => {
+    const article = document.createElement('article');
+
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <p>${project.description}</p>
+    `;
+
+    containerElement.appendChild(article);
+  });
+}
+
 
 
 
