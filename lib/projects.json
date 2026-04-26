@@ -2,19 +2,19 @@
     {
         "title": "DSC106 Project #1",
         "year": "2026",
-        "image": "/images/dsc106p1.png",
+        "image": "/images/dsc106p1.jpg",
         "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima sint quae dolorem, velit architecto ratione harum veniam blanditiis consequuntur impedit saepe ut tempore quo dolores unde, tenetur qui laborum. Magnam!"
     },
     {
         "title": "DSC80 Final Project",
         "year": "2026",
-        "image": "https://private-user-images.githubusercontent.com/236875793/565812144-95610568-3a0c-42ed-9f77-f498af12e74f.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzcxNzQ0MTksIm5iZiI6MTc3NzE3NDExOSwicGF0aCI6Ii8yMzY4NzU3OTMvNTY1ODEyMTQ0LTk1NjEwNTY4LTNhMGMtNDJlZC05Zjc3LWY0OThhZjEyZTc0Zi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDI2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQyNlQwMzI4MzlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lZTU5YzUxYTRjODkxMGU4ODRlZTI2NWI0ZGEwMzA1MzE4YjhkMWEwOTNiMzllNGEzYmE1MDNjOGYyZTk1MTg2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.JQ9mcJ-iWpTqQyIsCe6NSWM8CRFcvPRTvYJRhgDZbJI",
+        "image": "/images/dsc80.jpg",
         "description": "Quidem earum dolor, deserunt nemo nihil molestiae ullam voluptas obcaecati repellendus, iste culpa totam expedita quod perferendis cupiditate possimus optio animi blanditiis fuga esse, corrupti incidunt aliquid? Excepturi, iste enim!"
     },
     {
         "title": "COGS108 Final Project",
         "year": "2025",
-        "image": "/images/cogs108plot.png",
+        "image": "/images/cogs108plot.jpg",
         "description": "Dolor nobis provident quae error laborum fuga nam labore nemo ex porro sint eius modi, iste aliquid dignissimos quis odit amet quia velit veniam nisi! Rerum dolore provident repellendus velit."
     },
     {
