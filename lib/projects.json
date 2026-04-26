@@ -2,19 +2,19 @@
     {
         "title": "DSC106 Project #1",
         "year": "2026",
-        "image": "/images/dsc106p1.jpg",
+        "image": "https://evenwu.github.io/portfolio/images/dsc106p1.jpg",
         "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima sint quae dolorem, velit architecto ratione harum veniam blanditiis consequuntur impedit saepe ut tempore quo dolores unde, tenetur qui laborum. Magnam!"
     },
     {
         "title": "DSC80 Final Project",
         "year": "2026",
-        "image": "/images/dsc80.jpg",
+        "image": "https://evenwu.github.io/portfolio/images/dsc80.jpg",
         "description": "Quidem earum dolor, deserunt nemo nihil molestiae ullam voluptas obcaecati repellendus, iste culpa totam expedita quod perferendis cupiditate possimus optio animi blanditiis fuga esse, corrupti incidunt aliquid? Excepturi, iste enim!"
     },
     {
         "title": "COGS108 Final Project",
         "year": "2025",
-        "image": "/images/cogs108plot.jpg",
+        "image": "https://evenwu.github.io/portfolio/images/cogs108.jpg",
         "description": "Dolor nobis provident quae error laborum fuga nam labore nemo ex porro sint eius modi, iste aliquid dignissimos quis odit amet quia velit veniam nisi! Rerum dolore provident repellendus velit."
     },
     {
