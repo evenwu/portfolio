@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Temperature Change Across Emission Scenarios</title>
+
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Styles -->
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    header {
+      background-color: #004578;
+      color: white;
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    #chart {
+      position: relative;
+      width: 100%;
+      height: 520px;
+    }
+
+    .tooltip {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-size: 13px;
+      pointer-events: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    #controls {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    #controls button {
+      background-color: #e1e1e1;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 14px;
+      margin: 0 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+
+    #controls button:hover {
+      background-color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    /* Hidden line style */
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Default button style */
+    #controls button {
+      font-weight: normal;
+    }
+
+    /* Active (visible) button = bold */
+    #controls button.active {
+      font-weight: bold;
+    }
+
+    /* Scenario‑specific colors */
+    button[data-scenario="historical"] {
+        color: #4c78a8;
+    }
+
+    button[data-scenario="ssp245"] {
+        color: #72b7b2;
+    }
+
+    button[data-scenario="ssp585"] {
+        color: #f58518;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Global Temperature Change Across Emission Scenarios</h1>
+  </header>
+
+  <main>
+    <div id="chart"></div>
+
+    <div id="controls">
+      <button class="scenario-btn" data-scenario="historical">Historical</button>
+      <button class="scenario-btn" data-scenario="ssp245">SSP245</button>
+      <button class="scenario-btn" data-scenario="ssp585">SSP585</button>
+    </div>
+
+    <section id="vocab" style="margin-top: 2rem; line-height: 1.6;">
+        <ul>
+            <li>
+            <strong>Historical</strong> — Real-world climate data from 1850–2014. This is the
+            baseline used to understand how temperatures have changed before future projections begin.
+            </li>
+
+            <li>
+            <strong>SSP245</strong> — A “middle‑of‑the‑road” future scenario. Society continues
+            current trends with moderate climate policies.
+            </li>
+
+            <li>
+            <strong>SSP585</strong> — A high‑emissions, fossil‑fuel‑intensive future. Rapid
+            economic growth and heavy energy use lead to strong warming.
+            </li>
+        </ul>
+    </section>
+
+
+    <footer>
+      <p>
+        Data source: 
+        <a href="https://console.cloud.google.com/marketplace/product/noaa-public/cmip6?project=fluid-script-453604-u5" target="_blank">CMIP 6</a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Your D3 script -->
+  <script src="dsc106P3.js"></script>
+</body>
+</html>
