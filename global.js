@@ -9,6 +9,7 @@ let pages = [
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
   { url: 'resume/', title: 'Resume' },
+  { url: 'meta/', title: 'Meta' },
   { url: 'https://github.com/evenwu', title: 'GitHub' }
 ];
 
@@ -73,18 +74,18 @@ select.addEventListener('input', (event) => {
 let form = document.querySelector("form");
 
 form?.addEventListener("submit", function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    let data = new FormData(form);
+  let data = new FormData(form);
 
-    let url = form.action + "?";
+  let url = form.action + "?";
 
-    let subject = encodeURIComponent(data.get("subject"));
-    let message = encodeURIComponent(data.get("message"));
+  let subject = encodeURIComponent(data.get("subject"));
+  let message = encodeURIComponent(data.get("message"));
 
-    url += `subject=${subject}&body=${message}`;
+  url += `subject=${subject}&body=${message}`;
 
-    location.href = url;
+  location.href = url;
 });
 
 export async function fetchJSON(url) {
