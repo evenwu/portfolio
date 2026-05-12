@@ -1,0 +1,225 @@
+/* ====================================================
+   PAGE TITLE
+==================================================== */
+header {
+  width: 100%;
+  background: #1f77b4;
+  padding: 20px 0;
+}
+
+header h1 {
+  margin: 0;
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* ====================================================
+   GLOBAL PAGE LAYOUT
+==================================================== */
+body {
+  font: 100%/1.5 system-ui;
+  margin: 0;
+  background: #f5f7fa;
+}
+
+#container {
+  width: 100%;
+  max-width: 1000px; 
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+main {
+  padding: 30px;
+}
+
+/* ====================================================
+   CHART CONTAINER
+==================================================== */
+#chart {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  margin-top: 25px;
+
+  max-width: 950px;     /* NEW: matches graph width */
+  margin-left: auto;    /* NEW: center horizontally */
+  margin-right: auto;   /* NEW: center horizontally */
+  overflow-x: auto;
+}
+
+/* ====================================================
+   TEMPERATURE UNIT SELECTOR
+==================================================== */
+#unit-selector {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* ====================================================
+   SCENARIO TOGGLE BUTTONS
+==================================================== */
+#scenario-controls {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;                  /* Space between buttons */
+}
+
+#scenario-controls button {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;         /* More left padding */
+  border-radius: 6px;
+  border: none;
+  color: white;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+#scenario-controls button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+}
+
+#scenario-controls button.active {
+  opacity: 1;
+}
+
+#scenario-controls button:not(.active) {
+  opacity: 0.35;
+}
+
+
+/* ====================================================
+   AXIS CONTROLS
+==================================================== */
+#controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;         /* center the whole block */
+  gap: 20px;
+  width: 100%;
+}
+
+/* Two-line grid: X inputs row 1, Y inputs row 2 */
+#axis-inputs {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 12px 18px;
+  justify-content: center;     /* center the grid */
+}
+
+#axis-inputs label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#axis-inputs input {
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100px;
+  font-size: 14px;
+}
+
+/* Buttons row */
+#axis-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Shared button styling */
+#axis-buttons button {
+  padding: 10px 24px;          /* more left padding */
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Update button */
+#update {
+  background: #1f77b4;
+  color: white;
+}
+
+#update:hover {
+  background: #155d8a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+}
+
+/* Reset button */
+#reset {
+  background: #888;
+  color: white;
+}
+
+#reset:hover {
+  background: #666;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+}
+
+
+/* ====================================================
+   SVG TEXT & AXES
+==================================================== */
+.x-label, .y-label {
+  font-size: 14px;
+  fill: #333;
+}
+
+.x-axis text, .y-axis text {
+  font-size: 12px;
+  fill: #444;
+}
+
+.x-axis path, .y-axis path,
+.x-axis line, .y-axis line {
+  stroke: #bbb;
+}
+
+
+/* ====================================================
+   RESPONSIVE BEHAVIOR
+==================================================== */
+@media (max-width: 700px) {
+  #axis-buttons {
+    flex-wrap: wrap;
+  }
+
+  #scenario-controls button {
+    margin-bottom: 6px;
+  }
+}

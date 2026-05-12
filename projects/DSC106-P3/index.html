@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Temperature Change Across Emission Scenarios</title>
+
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <header>
+    <h1>Global Temperature Change Across Emission Scenarios</h1>
+  </header>
+  <main>
+    <div id="unit-selector">
+      <label for="temp-unit">Temperature Unit:</label>
+      <select id="temp-unit">
+        <option value="K">Kelvin (K)</option>
+        <option value="C">Celsius (°C)</option>
+        <option value="F">Fahrenheit (°F)</option>
+      </select>
+    </div>
+
+    
+    <div id="controls">
+      <div id="axis-inputs">
+        <label>X‑min: <input id="xmin" type="number" ></label>
+        <label>X‑max: <input id="xmax" type="number" ></label>
+        <label>Y‑min: <input id="ymin" type="number" ></label>
+        <label>Y‑max: <input id="ymax" type="number" ></label>
+      </div>
+
+      <div id="axis-buttons">
+        <button id="update">Update Axes</button>
+        <button id="reset">Reset Axes</button>
+      </div>
+    </div>
+
+    
+
+    <div id="chart"></div>
+
+    <div id="scenario-controls"></div>
+
+  </main>
+
+  <!-- Your D3 script -->
+  <script src="script.js"></script>
+</body>
+</html>
