@@ -37,7 +37,6 @@ function getTempUnitLabel() {
 d3.csv("data.csv", d3.autoType).then(data => {
   const startYear = d3.min(data, d => d.year);
   const endYear = d3.max(data, d => d.year);
-
   const baselineYear = 1850;
   const baselineMean = d3.mean(
     data.filter(d => d.scenario === "historical" && d.year === baselineYear),
