@@ -13,9 +13,9 @@
     <header class="page-header">
       <div>
         <p class="eyebrow">CMIP6 Climate Scenarios</p>
-        <h1>Global Temperature Pathways</h1>
+        <h1>How Hot is the Future?</h1>
         <p class="lede">
-          Compare historical warming with projected global temperature change across mitigation pathways.
+          Exploring historical warming and projected climate pathways from 1850 to 2100
         </p>
       </div>
     </header>
@@ -26,7 +26,7 @@
       <section class="controls" aria-label="Chart controls">
 
         <div class="control-group">
-          <span class="control-title">Series</span>
+          <span class="control-title">Simulated Emissions Level</span>
 
           <label class="check-option">
             <input type="checkbox" id="historical-toggle" checked>
@@ -37,25 +37,25 @@
           <label class="check-option">
             <input type="checkbox" value="ssp126" checked>
             <span class="swatch ssp126"></span>
-            SSP126
+             Low (SSP1-2.6)
           </label>
 
           <label class="check-option">
             <input type="checkbox" value="ssp245" checked>
             <span class="swatch ssp245"></span>
-            SSP245
+            Medium (SSP2-4.5)
           </label>
 
           <label class="check-option">
             <input type="checkbox" value="ssp370" checked>
             <span class="swatch ssp370"></span>
-            SSP370
+            High (SSP3-7.0)
           </label>
 
           <label class="check-option">
             <input type="checkbox" value="ssp585" checked>
             <span class="swatch ssp585"></span>
-            SSP585
+            Very High (SSP5-8.5)
           </label>
         </div>
 
@@ -71,6 +71,12 @@
             <input type="checkbox" id="anomaly-toggle">
             Show anomaly relative to 1850
           </label>
+
+          <label class="check-option">
+            <input type="checkbox" id="danger-toggle">
+            Show critical warming threshold
+          </label>
+
 
           <label class="check-option">
             <input type="checkbox" id="smooth-toggle" checked>
@@ -107,10 +113,25 @@
 
       <!-- Chart -->
       <section class="chart-panel" aria-label="Temperature chart">
-        <div id="chart"></div>
+        <div class="chart-flex">
+          <div id="chart"></div>
+          <div id="legend"></div>
+        </div>
       </section>
 
     </section>
+
+    <section id="writeup">
+      <h2>What is SSP?</h2>
+      <p>Each SSP scenario has two components:</p>
+      <ul>
+        <li><strong>SSP number (1–5):</strong> the socioeconomic pathway describing how society develops.</li>
+        <li><strong>Radiative forcing value (e.g., 2.6, 4.5, 7.0, 8.5):</strong> the extra heat (W/m²) Earth absorbs by 2100.</li>
+      </ul>
+
+      <h2>About the Critical Warming threshold:</h2>
+      <p>In climate science, the most widely recognized upper boundary for avoiding severe and potentially irreversible impacts is +2 °C of global warming above the pre‑industrial baseline (1850–1900). This threshold is used by the IPCC and the Paris Agreement as a marker separating “high‑risk” climate futures from more manageable ones.</p>
+
   </main>
   <script src="main.js"></script>
 </body>

@@ -45,7 +45,7 @@ body {
 .eyebrow {
   margin: 0 0 10px;
   color: #32605f;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 750;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -60,10 +60,9 @@ h1 {
 }
 
 .lede {
-  max-width: 760px;
   margin: 18px 0 0;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 28px;
   line-height: 1.5;
 }
 
@@ -126,9 +125,8 @@ h1 {
 
 .control-group:first-child {
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 8px 16px;
+  flex-direction: column;
+  gap: 10px;
   padding-left: 0;
   border-left: 0;
 }
@@ -399,4 +397,44 @@ input[type="range"] {
   .control-group:last-child {
     padding-bottom: 0;
   }
+}
+
+.chart-flex {
+  display: flex;
+  gap: 0px;
+}
+
+#legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.chart-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px; /* tighten spacing */
+}
+
+.danger-line {
+  stroke: #e32f27;
+  stroke-width: 3;
+  stroke-dasharray: 6 6;
+  opacity: 0.9;
 }

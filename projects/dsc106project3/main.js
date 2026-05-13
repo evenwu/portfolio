@@ -1,6 +1,8 @@
 const width = 900;
 const height = 520;
-const margin = { top: 40, right: 160, bottom: 60, left: 70 };
+const margin = { top: 40, right: 20, bottom: 60, left: 70 };
+let previousHadHistorical = true;
+
 
 const svg = d3.select("#chart")
   .append("svg")
@@ -42,6 +44,8 @@ d3.csv("data.csv", d3.autoType).then(data => {
     data.filter(d => d.scenario === "historical" && d.year === baselineYear),
     d => d.mean
   );
+
+  const dangerKelvin = baselineMean + 2; // +2 in Kelvin
 
   const startSlider = document.querySelector("#start-year-slider");
   const endSlider = document.querySelector("#year-slider");
@@ -86,15 +90,22 @@ d3.csv("data.csv", d3.autoType).then(data => {
 
   function getSelectedScenarios() {
     const selected = [];
+
+    // Historical toggle
     if (document.querySelector("#historical-toggle").checked) {
       selected.push("historical");
     }
-    document.querySelectorAll(".controls input[type='checkbox']")
+
+    // Only scenario checkboxes with a value (ssp126, ssp245, ...)
+    document
+      .querySelectorAll('.control-group:first-child input[type="checkbox"][value]')
       .forEach(cb => {
-        if (cb.value && cb.checked) selected.push(cb.value);
+        if (cb.checked) selected.push(cb.value);
       });
+
     return selected;
   }
+
 
   function tempMean(d) {
     if (!currentAnomaly) return convertTemp(d.mean);
@@ -148,6 +159,7 @@ d3.csv("data.csv", d3.autoType).then(data => {
     const area = buildArea();
     const byScenario = d3.group(currentFiltered, d => d.scenario);
 
+    // --- RANGE AREAS ---
     svg.selectAll(".range-area")
       .data(currentShowRange ? currentSelected : [], d => d)
       .join(
@@ -166,6 +178,7 @@ d3.csv("data.csv", d3.autoType).then(data => {
         return rows.length ? area(rows) : null;
       });
 
+    // --- LINES ---
     const lineSel = svg.selectAll(".scenario-line")
       .data(currentSelected, d => d)
       .join(
@@ -193,6 +206,7 @@ d3.csv("data.csv", d3.autoType).then(data => {
       .on("mouseover", (event, s) => highlightScenario(s))
       .on("mouseout", resetHighlight);
 
+    // --- HOVER TARGETS ---
     svg.selectAll(".hover-target")
       .data(currentFiltered, d => d.scenario + "-" + d.year)
       .join(
@@ -211,9 +225,9 @@ d3.csv("data.csv", d3.autoType).then(data => {
           .style("display", "block")
           .html(
             `<strong>${d.scenario.toUpperCase()}</strong><br>
-             Year: ${d.year}<br>
-             Mean: ${tempMean(d).toFixed(2)} ${currentUnitLabel}<br>
-             Range: ${tempLow(d).toFixed(2)}–${tempHigh(d).toFixed(2)} ${currentUnitLabel}`
+            Year: ${d.year}<br>
+            Mean: ${tempMean(d).toFixed(2)} ${currentUnitLabel}<br>
+            Range: ${tempLow(d).toFixed(2)}–${tempHigh(d).toFixed(2)} ${currentUnitLabel}`
           );
       })
       .on("mousemove", function(event) {
@@ -225,6 +239,52 @@ d3.csv("data.csv", d3.autoType).then(data => {
         tooltip.style("display", "none");
         resetHighlight();
       });
+
+    // ============================================================
+    // DANGER LINE (+2°C ABOVE 1850 BASELINE)
+    // ============================================================
+
+    // Compute danger line value in the correct unit + anomaly mode
+    function dangerValue() {
+      if (!currentAnomaly) {
+        return convertTemp(dangerKelvin);
+      }
+      return convertTemp(dangerKelvin) - convertTemp(baselineMean);
+    }
+
+    const showDanger = document.querySelector("#danger-toggle").checked;
+
+    svg.selectAll(".danger-line")
+      .data(showDanger ? [1] : [])  // dummy value, we compute y ourselves
+      .join(
+        enter => enter.append("line").attr("class", "danger-line"),
+        update => update,
+        exit => exit.remove()
+      )
+      .attr("x1", margin.left)
+      .attr("x2", width - margin.right)
+      .attr("y1", () => y(dangerValue()))
+      .attr("y2", () => y(dangerValue()));
+  }
+
+
+  function drawLegend() {
+    const legend = d3.select("#legend");
+    legend.selectAll("*").remove();
+
+    currentSelected.forEach(s => {
+      const row = legend.append("div")
+        .attr("class", "legend-row")
+        .attr("data-scenario", s);
+
+      row.append("span")
+        .attr("class", "legend-swatch")
+        .style("background", colors[s]);
+
+      row.append("span")
+        .attr("class", "legend-label")
+        .text(s.toUpperCase());
+    });
   }
 
   function updateChart() {
@@ -242,8 +302,22 @@ d3.csv("data.csv", d3.autoType).then(data => {
     startSlider.min = earliestSelectedYear;
     endSlider.min = earliestSelectedYear;
 
+    // Detect if historical was just re-enabled
+    const historicalJustEnabled =
+      !previousHadHistorical && currentSelected.includes("historical");
+
+    // Update memory
+    previousHadHistorical = currentSelected.includes("historical");
+
+    // Only reset when historical is newly selected
+    if (historicalJustEnabled) {
+      startSlider.value = earliestSelectedYear;
+      endSlider.value = endSlider.max;
+    }
+
     let sYear = Math.max(+startSlider.value, earliestSelectedYear);
     let eYear = Math.max(+endSlider.value, earliestSelectedYear);
+
     if (sYear > eYear) [sYear, eYear] = [eYear, sYear];
 
     startLabel.textContent = sYear;
@@ -268,10 +342,11 @@ d3.csv("data.csv", d3.autoType).then(data => {
     yAxisLabel.text(
       currentAnomaly
         ? `Temperature anomaly relative to ${baselineYear} (${currentUnitLabel})`
-        : `Temperature (${currentUnitLabel})`
+        : `Global  Mean  Temperature (${currentUnitLabel})`
     );
 
     drawChart();
+    drawLegend();
   }
 
   document.querySelectorAll("input[type='checkbox']")
@@ -280,6 +355,7 @@ d3.csv("data.csv", d3.autoType).then(data => {
   startSlider.addEventListener("input", updateChart);
   endSlider.addEventListener("input", updateChart);
   document.querySelector("#temp-unit").addEventListener("change", updateChart);
+  document.querySelector("#danger-toggle").addEventListener("change", updateChart);
 
   updateChart();
 });
