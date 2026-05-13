@@ -1,225 +1,404 @@
-/* ====================================================
-   PAGE TITLE
-==================================================== */
-header {
-  width: 100%;
-  background: #1f77b4;
-  padding: 20px 0;
+:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-soft: #eef3f7;
+  --text: #172026;
+  --muted: #64717d;
+  --border: #d8e1e8;
+  --historical: #222222;
+  --ssp126: #12843b;
+  --ssp245: #2458db;
+  --ssp370: #b86cff;
+  --ssp585: #e32f27;
+  --shadow: 0 18px 45px rgba(32, 47, 67, 0.11);
 }
 
-header h1 {
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
   margin: 0;
-  text-align: center;
-  color: white;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, #f7fafc 0%, var(--bg) 48%, #eef4f3 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Shell / layout */
+
+.app-shell {
+  width: min(1240px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 36px 0 48px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #32605f;
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 820px;
+  margin: 0;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.lede {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.baseline-pill {
+  min-width: 132px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 24px rgba(32, 47, 67, 0.07);
+  text-align: right;
+}
+
+.baseline-pill span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.baseline-pill strong {
+  display: block;
+  margin-top: 4px;
   font-size: 28px;
+  line-height: 1;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* Panels */
+
+.controls,
+.chart-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.25fr) minmax(240px, 0.8fr) minmax(390px, 1fr);
+  gap: 0;
+  align-items: start;
+  padding: 16px 18px;
+}
+
+.control-group {
+  min-height: 100%;
+  padding: 0 18px;
+  border-left: 1px solid var(--border);
+  border-top: 0;
+}
+
+.control-group:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px 16px;
+  padding-left: 0;
+  border-left: 0;
+}
+
+.control-group:last-child {
+  padding-right: 0;
+}
+
+.control-group:first-child .control-title {
+  flex: 0 0 100%;
+}
+
+.control-title {
+  display: block;
+  margin-bottom: 12px;
+  color: #52616d;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Scenario toggles */
+
+.check-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  margin-bottom: 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.check-option:last-child {
+  margin-bottom: 0;
+}
+
+input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: #2458db;
+}
+
+.swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  flex: 0 0 13px;
+}
+
+.swatch.historical {
+  background: var(--historical);
+}
+
+.swatch.ssp126 {
+  background: var(--ssp126);
+}
+
+.swatch.ssp245 {
+  background: var(--ssp245);
+}
+
+.swatch.ssp370 {
+  background: var(--ssp370);
+}
+
+.swatch.ssp585 {
+  background: var(--ssp585);
+}
+
+/* Selects / unit control */
+
+.select-control {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
   font-weight: 700;
 }
 
-/* ====================================================
-   GLOBAL PAGE LAYOUT
-==================================================== */
-body {
-  font: 100%/1.5 system-ui;
-  margin: 0;
-  background: #f5f7fa;
-}
-
-#container {
+select {
   width: 100%;
-  max-width: 1000px; 
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #b9c6d0;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
 }
 
-main {
-  padding: 30px;
+/* Sliders */
+
+.slider-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px; 
 }
 
-/* ====================================================
-   CHART CONTAINER
-==================================================== */
+
+.slider-box .control-title {
+  grid-column: 1 / -1;
+}
+
+.slider-box label {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 52px;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.slider-box strong {
+  color: var(--text);
+  font-size: 16px;
+  text-align: right;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #2458db;
+}
+
+/* Chart */
+
+.chart-panel {
+  min-width: 0;
+  padding: 20px 22px 10px;
+}
+
 #chart {
-  background: white;
-  border-radius: 10px;
-  padding: 25px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  margin-top: 25px;
-
-  max-width: 950px;     /* NEW: matches graph width */
-  margin-left: auto;    /* NEW: center horizontally */
-  margin-right: auto;   /* NEW: center horizontally */
-  overflow-x: auto;
+  width: 100%;
 }
 
-/* ====================================================
-   TEMPERATURE UNIT SELECTOR
-==================================================== */
-#unit-selector {
-  margin-top: 15px;
-  margin-bottom: 20px;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 14px;
-  font-weight: 600;
+#chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
 }
 
-
-/* ====================================================
-   SCENARIO TOGGLE BUTTONS
-==================================================== */
-#scenario-controls {
-  margin-top: 15px;
-  margin-bottom: 20px;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;                  /* Space between buttons */
+#chart text {
+  fill: var(--text);
+  font-family: inherit;
 }
 
-#scenario-controls button {
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 10px 20px;         /* More left padding */
-  border-radius: 6px;
-  border: none;
-  color: white;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.2s ease;
-
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+#chart .tick text {
+  fill: #2f3c45;
+  font-size: 12px;
 }
 
-#scenario-controls button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+#chart .domain,
+#chart .tick line {
+  stroke: #9caab5;
 }
 
-#scenario-controls button.active {
-  opacity: 1;
+/* Tooltip */
+
+.tooltip {
+  position: absolute;
+  z-index: 10;
+  padding: 9px 11px;
+  border: 1px solid rgba(23, 32, 38, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 28px rgba(32, 47, 67, 0.16);
+  color: var(--text);
+  pointer-events: none;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
-#scenario-controls button:not(.active) {
+/* Lines / areas / hover */
+
+.scenario-line {
+  fill: none;
+  stroke-width: 3;
+}
+
+.range-area {
   opacity: 0.35;
 }
 
-
-/* ====================================================
-   AXIS CONTROLS
-==================================================== */
-#controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;         /* center the whole block */
-  gap: 20px;
-  width: 100%;
+.hover-target {
+  pointer-events: all;
+  fill: transparent;
 }
 
-/* Two-line grid: X inputs row 1, Y inputs row 2 */
-#axis-inputs {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  gap: 12px 18px;
-  justify-content: center;     /* center the grid */
+.faded {
+  opacity: 0.15 !important;
 }
 
-#axis-inputs label {
-  font-size: 14px;
-  font-weight: 500;
+.scenario-line,
+.range-area,
+.hover-target {
+  transition: opacity 0.25s ease, stroke-width 0.25s ease, fill-opacity 0.25s ease;
 }
 
-#axis-inputs input {
-  padding: 7px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100px;
-  font-size: 14px;
-}
+/* Reset button (if used) */
 
-/* Buttons row */
-#axis-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
-}
-
-/* Shared button styling */
-#axis-buttons button {
-  padding: 10px 24px;          /* more left padding */
-  font-size: 14px;
-  font-weight: 600;
+.reset-button {
+  margin-top: 10px;
+  padding: 6px 10px;
   border-radius: 6px;
-  cursor: pointer;
-  border: none;
-
-  transition:
-    background 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.2s ease;
-
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-}
-
-/* Update button */
-#update {
-  background: #1f77b4;
-  color: white;
-}
-
-#update:hover {
-  background: #155d8a;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
-}
-
-/* Reset button */
-#reset {
-  background: #888;
-  color: white;
-}
-
-#reset:hover {
-  background: #666;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
-}
-
-
-/* ====================================================
-   SVG TEXT & AXES
-==================================================== */
-.x-label, .y-label {
-  font-size: 14px;
-  fill: #333;
-}
-
-.x-axis text, .y-axis text {
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
   font-size: 12px;
-  fill: #444;
+  font-weight: 650;
+  cursor: pointer;
 }
 
-.x-axis path, .y-axis path,
-.x-axis line, .y-axis line {
-  stroke: #bbb;
+.reset-button:hover {
+  background: #dde6ee;
 }
 
+/* Responsive */
 
-/* ====================================================
-   RESPONSIVE BEHAVIOR
-==================================================== */
-@media (max-width: 700px) {
-  #axis-buttons {
-    flex-wrap: wrap;
+@media (max-width: 1080px) {
+  .controls {
+    grid-template-columns: 1fr 1fr;
   }
 
-  #scenario-controls button {
-    margin-bottom: 6px;
+  .slider-box.control-group {
+    grid-column: 1 / -1;
+    padding: 16px 0 0;
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .app-shell {
+    width: min(100% - 28px, 720px);
+    padding-top: 24px;
+  }
+
+  .page-header {
+    display: block;
+  }
+
+  .baseline-pill {
+    width: max-content;
+    margin-top: 18px;
+    text-align: left;
+  }
+
+  .dashboard,
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .control-group,
+  .slider-box.control-group {
+    padding: 14px 0;
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .control-group:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .control-group:last-child {
+    padding-bottom: 0;
   }
 }
