@@ -359,6 +359,12 @@ circle {
   transform-box: fill-box;
 }
 
+circle {
+  @starting-style {
+    r: 0;
+  }
+}
+
 circle:hover {
   transform: scale(1.5);
 }
@@ -410,3 +416,100 @@ circle.selected {
   margin: 0;
   font-size: 1.3rem;
 }
+
+#time-filter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#time-filter label {
+  display: flex;
+  align-items: baseline;
+  flex: 1;
+  gap: 0.75rem;
+}
+
+#commit-progress {
+  flex: 1;
+}
+
+#commit-time {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+#files {
+  display: grid;
+  grid-template-columns: 200px auto; /* instead of 200px 1fr */
+}
+
+
+#files dt code {
+  white-space: normal;   /* allow wrapping */
+  word-break: break-word; /* break long paths */
+}
+
+#files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+#files > div {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #ddd;
+}
+
+
+#files dt {
+  grid-column: 1;
+}
+
+#files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15em;
+  align-items: flex-start;
+}
+
+
+
+.loc {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  background: var(--color);
+  border-radius: 50%;
+}
+
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+#scatter-story {
+  position: relative;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;
+}
+
+.step {
+  padding-bottom: 5vh;
+}
+
+

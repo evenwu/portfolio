@@ -12,33 +12,51 @@
 <body>
     <h1>Meta</h1>
 
-    <!-- Step 1 -->
-    <h2>Summary</h2>
+    <p>This page include stats about the code of this website</p>
+    <div id="time-filter">
+        <label>
+            <input type="range" id="commit-progress" min="0" max="100" value="100" hidden>
+            <time id="commit-time" hidden></time>
+        </label>
+    </div>
     <div id="stats"></div>
 
-    <!-- Step 2 -->
-    <h2>Commits by time of day</h2>
-    <div id="chart"></div>
-    <dl id="commit-tooltip" class="info tooltip" hidden>
-        <dt>Commit</dt>
-        <dd><a href="" id="commit-link" target="_blank"></a></dd>
+    <!-- Step 3.1: Scrollytelling wrapper -->
+    <div id="scrolly-1">
+        <!-- LEFT COLUMN: Story text -->
+        <div id="scatter-story"></div>
+        <!-- RIGHT COLUMN: Sticky scatter plot -->
+        <div id="scatter-plot">
+            <h2>Commits by time of day</h2>
+            <div id="chart"></div>
 
-        <dt>Date</dt>
-        <dd id="commit-date"></dd>
+            <dl id="commit-tooltip" class="info tooltip" hidden>
+                <dt>Commit</dt>
+                <dd><a href="" id="commit-link" target="_blank"></a></dd>
 
-        <dt>Time</dt>
-        <dd id="commit-time"></dd>
+                <dt>Date</dt>
+                <dd id="commit-date"></dd>
 
-        <dt>Author</dt>
-        <dd id="commit-author"></dd>
+                <dt>Time</dt>
+                <dd id="commit-time-tooltip"></dd>
 
-        <dt>Lines Edited</dt>
-        <dd id="commit-lines"></dd>
-    </dl>
+                <dt>Author</dt>
+                <dd id="commit-author"></dd>
 
-    <p id="selection-count">No commits selected</p>
-    <dl id="language-breakdown" class="stats"></dl>
+                <dt>Lines Edited</dt>
+                <dd id="commit-lines"></dd>
+            </dl>
+
+            <p id="selection-count">No commits selected</p>
+            <dl id="language-breakdown" class="stats"></dl>
+        </div>
+    </div>
+    
+
+    <!-- Step 2: Unit visualization (moved to bottom) -->
+    <dl id="files"></dl>
 
     <script type="module" src="main.js"></script>
 </body>
+
 </html>
