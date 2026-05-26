@@ -574,7 +574,7 @@ function updateRegionUI() {
     thermoRegionText.innerHTML =
       'Each thermometer represents a CMIP6-style scenario (SSP1–2.6, SSP2–4.5, SSP3–7.0, SSP5–8.5) for the <strong>global average</strong>. Use the year slider or play button to watch how they rise together at first, then split apart as the century unfolds. The number inside each bulb shows the temperature anomaly for that scenario and year.';
     lineRegionText.innerHTML =
-      'This linked line chart shows the same synthetic CMIP6-style data as the thermometers, currently for the <strong>global average</strong>. The vertical line tracks the current year from the slider above. You can toggle scenarios on and off to focus on specific futures.';
+      'This line chart shows the same CMIP6 data as the thermometers, currently for the <strong>global average</strong>. The vertical line tracks the current year from the slider above. You can toggle scenarios on and off to focus on specific futures.';
     // Reset risk narrative to placeholder
     riskNarrativeContainer.html(`
       <div class="risk-narrative-title">When does this place cross each risk?</div>
@@ -589,7 +589,7 @@ function updateRegionUI() {
     thermoRegionText.innerHTML =
       `Each thermometer represents a CMIP6-style scenario (SSP1–2.6, SSP2–4.5, SSP3–7.0, SSP5–8.5) for <strong>${selectedRegion}</strong>. Use the year slider or play button to watch how this country's climate futures diverge over the century. The number inside each bulb shows the temperature anomaly for that scenario and year.`;
     lineRegionText.innerHTML =
-      `This linked line chart shows the same synthetic CMIP6-style data as the thermometers, currently for <strong>${selectedRegion}</strong>. The vertical line tracks the current year from the slider above. You can toggle scenarios on and off to focus on specific futures.`;
+      `This linked line chart shows the same CMIP6 data as the thermometers, currently for <strong>${selectedRegion}</strong>. The vertical line tracks the current year from the slider above. You can toggle scenarios on and off to focus on specific futures.`;
   }
 }
 
